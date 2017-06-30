@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Application Fast Fill
-// @version      0.1
+// @version      0.2
 // @description  Fast fill an application
 // @author       gqqnbig
 // @include 	 http://www.example.com/*
@@ -13,7 +13,7 @@
     function selectRadioButtons()
     {
         var processedNames = [];
-		$("input[type=radio]").each(function()
+		$("input[type=radio]:not([onclick])").each(function()
 		{
 			if (processedNames.indexOf(this.name) > -1)
 				return;
@@ -27,7 +27,7 @@
     
     function selectDropdownList()
     {
-        $("select").each(function()
+    	$("select:not([onchange])").each(function ()
         {
             if(!$(this).val())
                 $(this).val($(this).find("option[value!='']").eq(0).val());
